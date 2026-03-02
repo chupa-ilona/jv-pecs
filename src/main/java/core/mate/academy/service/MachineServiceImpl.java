@@ -17,8 +17,9 @@ public class MachineServiceImpl implements MachineService<Machine> {
         }
         if (type.equals(Excavator.class)) {
             return (List<T>) new ExcavatorProducer().get();
+        } else {
+            return List.of();
         }
-        throw new IllegalArgumentException("Unknown machine type: " + type.getName());
     }
 
     @Override
