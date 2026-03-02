@@ -2,7 +2,6 @@ package core.mate.academy.service;
 
 import java.util.List;
 
-
 public interface MachineService <Machine> {
 
     List<Machine> getAll(Class <? extends Machine> type);
