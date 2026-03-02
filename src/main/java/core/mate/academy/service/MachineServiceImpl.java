@@ -8,19 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MachineServiceImpl implements MachineService<Machine> {
-
     @Override
-    public List<Machine> getAll(Class<? extends Machine> type) {
+    public <T extends Machine> List<T> getAll(Class<? extends Machine> type) {
         if (type.equals(Bulldozer.class)) {
-            return new ArrayList<>(new BulldozerProducer().get());
+            return (List<T>) new BulldozerProducer().get();
         }
         if (type.equals(Truck.class)) {
-            return new ArrayList<>(new TruckProducer().get());
+            return (List<T>) new TruckProducer().get();
         }
         if (type.equals(Excavator.class)) {
-            return new ArrayList<>(new ExcavatorProducer().get());
+            return (List<T>) new ExcavatorProducer().get();
         }
-        return List.of();
+        throw new IllegalArgumentException("Unknown machine type: " + type.getName());
     }
 
     @Override
